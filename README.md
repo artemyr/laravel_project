@@ -3,6 +3,8 @@
 - в .env FILESYSTEM_DISK установить public при необходимости
 - php artisan app:install
 - php artisan key:generate при необходимости или указать ключ вручную
+- указать LOG_STACK и LOG_LEVEL
+> LOG_STACK поддерживает также канал telegram
 
 ---
 
@@ -26,3 +28,16 @@ AppServiceProvider
 Пакеты php
 - debugbar
 - telescope
+---
+Модели со связями
+- belongsTo
+- belongsToMany
+- hasMany
+---
+Миграции
+
+---
+Фабрики
+
+---
+Сид бд

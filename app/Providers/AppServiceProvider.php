@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Model::shouldBeStrict(!app()->isProduction());
         /**
          * защита от проблемы ленивой загрузки отношений N+1
          * когда отношения модели подгружаются автоматически без явного указания
@@ -29,25 +30,31 @@ class AppServiceProvider extends ServiceProvider
          * записать данные в защищенное поле модели
          */
         Model::preventSilentlyDiscardingAttributes(!app()->isProduction());
-        /**
-         * если запрос в бд слишком долго обрабатывается отправляем лог в телеграм
-         */
-        DB::whenQueryingForLongerThan(500, function (Connection $connection) {
-            logger()
-                ->channel('telegram')
-                ->debug('whenQueryingForLongerThan:' . $connection->query()->toSql());
-        });
-        /**
-         * если запрос слишком долго отрабатывает, то отправляем лог в телеграмл
-         */
-        $kernel = app(Kernel::class);
-        $kernel->whenRequestLifecycleIsLongerThan(
-            CarbonInterval::seconds(4),
-            function () {
-                logger()
-                    ->channel('telegram')
-                    ->debug('whenRequestLifecycleIsLongerThan:' . request()->url());
-            }
-        );
+
+        if (app()->isProduction()) {
+
+            /**
+             * если запрос в бд слишком долго обрабатывается отправляем лог в телеграм
+             */
+            DB::listen(function ($query) {
+                if ($query->time > 100) {
+                    logger()
+                        ->channel('telegram')
+                        ->debug('query longer then 1ms:' . $query->toSql());
+                }
+            });
+
+            /**
+             * если запрос слишком долго отрабатывает, то отправляем лог в телеграмл
+             */
+            app(Kernel::class)->whenRequestLifecycleIsLongerThan(
+                CarbonInterval::seconds(4),
+                function () {
+                    logger()
+                        ->channel('telegram')
+                        ->debug('whenRequestLifecycleIsLongerThan:' . request()->url());
+                }
+            );
+        }
     }
 }
