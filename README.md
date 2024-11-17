@@ -1,9 +1,8 @@
 # Установка
-- php artisan key:generate
-- php artisan migrate
-- php artisan storage:link
-
-в .env FILESYSTEM_DISK установить public при необходимости
+- копировать .env.example и назвать .env -> установить актуальные настройки
+- в .env FILESYSTEM_DISK установить public при необходимости
+- php artisan app:install
+- php artisan key:generate при необходимости или указать ключ вручную
 
 ---
 
@@ -16,11 +15,14 @@
 
 # Что сделано
 ## Разработка
+InstallCommand - команда для установки проекта
+
+---
 AppServiceProvider
 - Конфигурация настроек моделей
 - Логгирование в телеграм в случае долгой обработки запроса бд
 - Логгирование в телеграм в случае долгой обработки скрипта php
-
+---
 Пакеты php
 - debugbar
 - telescope
