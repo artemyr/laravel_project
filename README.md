@@ -1,10 +1,13 @@
 # Установка
 - копировать .env.example и назвать .env -> установить актуальные настройки
 - в .env FILESYSTEM_DISK установить public при необходимости
+- настроить соединение с бд
+- установить зависимости composer
 - php artisan app:install
 - php artisan key:generate при необходимости или указать ключ вручную
 - указать LOG_STACK и LOG_LEVEL
-> LOG_STACK поддерживает также канал telegram
+> LOG_STACK поддерживает также канал telegram\
+> для telegram нужно указать TELEGRAM_CHAT_ID и TELEGRAM_BOT_TOKEN
 
 ---
 
