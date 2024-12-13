@@ -46,8 +46,13 @@ class AuthController extends Controller
         return redirect()->intended(route('home'));
     }
 
-    public function logOut()
+    public function logOut(): RedirectResponse
     {
-        /** TODO ... */
+        auth()->logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
 }

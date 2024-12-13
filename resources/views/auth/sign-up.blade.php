@@ -19,7 +19,7 @@
         />
         @error('name')
         <x-forms.error>
-            {{ $massage }}
+            {{ $message }}
         </x-forms.error>
         @enderror
 
@@ -33,7 +33,7 @@
         />
         @error('email')
         <x-forms.error>
-            {{ $massage }}
+            {{ $message }}
         </x-forms.error>
         @enderror
 
@@ -46,7 +46,7 @@
         />
         @error('password')
         <x-forms.error>
-            {{ $massage }}
+            {{ $message }}
         </x-forms.error>
         @enderror
 
@@ -59,7 +59,7 @@
         />
         @error('password_confirmation')
         <x-forms.error>
-            {{ $massage }}
+            {{ $message }}
         </x-forms.error>
         @enderror
 
