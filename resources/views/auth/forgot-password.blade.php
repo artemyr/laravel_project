@@ -5,9 +5,10 @@
 @section('content')
     <x-forms.auth-forms
         title="Забыли пароль"
-        action=""
+        action="{{ route('password.email') }}"
         method="POST"
     >
+        @csrf
 
         <x-forms.text-input
             name="email"
@@ -18,13 +19,15 @@
         />
         @error('email')
         <x-forms.error>
-            {{ $massage }}
+            {{ $message }}
         </x-forms.error>
         @enderror
 
         <x-forms.primary-button>
             Отправить
         </x-forms.primary-button>
+
+        <x-slot:socialAuth></x-slot:socialAuth>
 
         <x-slot:buttons>
             <div class="space-y-3 mt-5">
