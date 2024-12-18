@@ -114,6 +114,10 @@ class AuthController extends Controller
             ->redirect();
     }
 
+    /**
+     * TODO таблицу привязок вынести в отдельную - 3 - 3 - 11:30
+     * @return RedirectResponse
+     */
     public function githubCallback(): RedirectResponse
     {
         $githubUser = Socialite::driver('github')->user();
@@ -121,7 +125,7 @@ class AuthController extends Controller
         $user = User::query()->updateOrCreate([
             'github_id' => $githubUser->id,
         ], [
-            'name' => $githubUser->name,
+            'name' => $githubUser->email,
             'email' => $githubUser->email,
             'password' => bcrypt(str()->random(20)),
         ]);
