@@ -17,18 +17,10 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        if (!is_dir(storage_path('/app/public/images/products'))) {
-            mkdir(storage_path('/app/public/images/products'),0755, true);
-        }
-
         return [
             'title' => ucfirst($this->faker->words(2, true)),
             'brand_id' => Brand::query()->inRandomOrder()->value('id'),
-            'thumbnail' => $this->faker->file(
-                base_path('/tests/Fixtures/images/products'),
-                storage_path('/app/public/images/products'),
-                false
-            ),
+            'thumbnail' => $this->faker->fixturesImage('products','images/products',false),
             'price' => $this->faker->numberBetween(1000, 100000)
         ];
     }
