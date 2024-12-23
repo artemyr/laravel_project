@@ -66,3 +66,6 @@ ViewServiceProvider
 - vite
 - tailwindcss
 ---
+прочее
+- стилизованные flash уведомления для пользователей
+---
