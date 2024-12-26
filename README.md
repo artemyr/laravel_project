@@ -1,5 +1,5 @@
 # Установка
-- копировать .env.example и назвать .env -> установить актуальные настройки
+- копировать .env.example и назвать .env -> установить актуальные настройки, также сделать .env.testing для тестов
 - в .env FILESYSTEM_DISK установить public при необходимости
 - настроить соединение с бд
 - установить зависимости composer
@@ -15,6 +15,8 @@
 1. barryvdh/laravel-debugbar - отладка
 > работает когда в .env APP_DEBUG=true и APP_ENV не production
 2. laravel/telescope - просмотр логов
+3. worksome/request-factories - генератор запросов
+4. laravel/socialite - соцсети
 
 ---
 
@@ -44,6 +46,7 @@
 - контроллеры
 - события
 - провайдеры
+- тесты
   
 AppServiceProvider
 - Конфигурация настроек моделей
