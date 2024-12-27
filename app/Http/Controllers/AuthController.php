@@ -19,14 +19,10 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
+    // region Вход в аккаунт
     public function index(): View|Factory|Application|RedirectResponse
     {
         return view('auth.index');
-    }
-
-    public function signUp(): Application|Factory|View
-    {
-        return view('auth.sign-up');
     }
 
     public function signIn(SignInFormRequest $request): RedirectResponse
@@ -39,6 +35,13 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
         return redirect()->intended(route('home'));
+    }
+    // endregion
+
+    // region Регистрация
+    public function signUp(): Application|Factory|View
+    {
+        return view('auth.sign-up');
     }
 
     public function store(SignUpFormRequest $request): RedirectResponse
@@ -54,7 +57,9 @@ class AuthController extends Controller
 
         return redirect()->intended(route('home'));
     }
+    // endregion
 
+    // region Выход из аккаунта
     public function logOut(): RedirectResponse
     {
         auth()->logout();
@@ -64,7 +69,9 @@ class AuthController extends Controller
 
         return redirect()->route('home');
     }
+    // endregion
 
+    // region Забыл пароль
     public function forgot(): Application|Factory|View
     {
         return view('auth.forgot-password');
@@ -113,6 +120,8 @@ class AuthController extends Controller
 
         return back()->withErrors(['email' => __($status)]);
     }
+    // endregion
+
 
     public function github(): \Symfony\Component\HttpFoundation\RedirectResponse|RedirectResponse
     {
