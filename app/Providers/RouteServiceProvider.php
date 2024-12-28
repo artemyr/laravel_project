@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Contracts\RouteRegistrar;
+use App\Routing\AppRegistrar;
+use Domain\Auth\Routing\AuthRegistrar;
+use http\Exception\RuntimeException;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\RateLimiter;
@@ -12,12 +17,18 @@ class RouteServiceProvider extends ServiceProvider
 {
     public const HOME = '/';
 
-    public function boot(): void
+    protected array $registrars = [
+        AppRegistrar::class, AuthRegistrar::class
+    ];
+
+    public function boot(Registrar $router): void
     {
         $this->configureRateLimiting();
+
+        $this->mapRoutes($router, $this->registrars);
     }
 
-    protected function configureRateLimiting()
+    protected function configureRateLimiting(): void
     {
         RateLimiter::for('global', function (Request $request) {
             return Limit::perMinute(500)
@@ -34,6 +45,19 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id() ?: $request->ip());
         });
+    }
 
+    protected function mapRoutes(Registrar $router, array $registrars): void
+    {
+        foreach ($registrars as $registrar) {
+            if (! class_exists($registrar) || ! is_subclass_of($registrar, RouteRegistrar::class)) {
+                throw new RuntimeException(sprintf(
+                    'Cannot map routes \'%s\', it is not a valid route class',
+                    $registrar
+                ));
+            }
+
+            (new $registrar)->map($router);
+        }
     }
 }
