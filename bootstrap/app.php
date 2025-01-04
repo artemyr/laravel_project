@@ -14,10 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
+
+        /** TODO разобраться с отображением ошибки */
         $exceptions->report(function (DomainException $e) {
             flash()->alert($e->getMessage());
-
-            back();
+            return back();
         });
 
     })->create();

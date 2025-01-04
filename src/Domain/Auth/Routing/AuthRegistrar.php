@@ -18,41 +18,50 @@ class AuthRegistrar implements RouteRegistrar
         Route::middleware('web')
             ->group(function() {
                 Route::controller(SignInController::class)->group(function () {
-                    Route::get('/login', 'page')->name('login');
+                    Route::get('/login', 'page')
+                        ->name('login');
+
                     Route::post('/login', 'handle')
                         ->middleware('throttle:auth')
-                        ->name('signIn');
-                    Route::delete('/logout', 'logOut')->name('logOut');
+                        ->name('login.handle');
+
+                    Route::delete('/logout', 'logOut')
+                        ->name('logOut');
                 });
 
                 Route::controller(SignUpController::class)->group(function () {
-                    Route::get('/sign-up', 'page')->name('signUp');
+                    Route::get('/sign-up', 'page')
+                        ->name('register');
+
                     Route::post('/sign-up', 'handle')
                         ->middleware('throttle:auth')
-                        ->name('store');
+                        ->name('register.handle');
                 });
 
                 Route::controller(ForgotPasswordController::class)->group(function () {
                     Route::get('/forgot-password', 'page')
                         ->middleware('guest')
-                        ->name('password.request');
+                        ->name('forgot');
+
                     Route::post('/forgot-password', 'handle')
                         ->middleware('guest')
-                        ->name('password.email');
+                        ->name('forgot.handle');
                 });
 
                 Route::controller(ResetPasswordController::class)->group(function () {
                     Route::get('/reset-password', 'page')
                         ->middleware('guest')
                         ->name('password.reset');
+
                     Route::post('/reset-password', 'handle')
                         ->middleware('guest')
-                        ->name('password.update');
+                        ->name('reset-password.handle');
                 });
 
                 Route::controller(SocialAuthController::class)->group(function () {
                     Route::get('/auth/socialite/{driver}', 'redirect')
-                        ->name('socialite');
+                        ->name('socialite.redirect');
+
                     Route::get('/auth/socialite/{driver}/callback', 'callback')
                         ->name('socialite.callback');
                 });

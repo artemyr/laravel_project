@@ -1,0 +1,52 @@
+<?php
+
+namespace Tests\Feature\App\Http\Controllers;
+
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Requests\ForgotPasswordFormRequest;
+use Domain\Auth\Models\User;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
+
+class ForgotPasswordControllerTest extends TestCase
+{
+    //    use RefreshDatabase;
+
+    public function test_it_forgot_page_success(): void
+    {
+        $this->get(action([ForgotPasswordController::class, 'page']))
+            ->assertOk()
+            ->assertSee('Забыли пароль')
+            ->assertViewIs('auth.forgot-password');
+    }
+
+    /**
+     * TODO improve
+     */
+    public function test_it_forgot_password_success(): void
+    {
+        Event::fake();
+        Notification::fake();
+
+        $password = '123456789';
+        $user = User::factory()->create([
+            'email' => 'user_forgot_password_test@mail.ru',
+            'password' => bcrypt($password),
+        ]);
+
+        $request = ForgotPasswordFormRequest::factory()->create([
+            'email' => 'user_forgot_password_test@mail.ru',
+        ]);
+
+        $response = $this->post(action([ForgotPasswordController::class, 'handle']), $request);
+
+        $response->assertValid();
+
+        $this->assertDatabaseHas('password_reset_tokens', [
+            'email' => $request['email'],
+        ]);
+
+        $response->assertRedirect(route('home'));
+    }
+}

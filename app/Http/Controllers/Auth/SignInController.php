@@ -13,7 +13,7 @@ class SignInController extends Controller
 {
     public function page(): View|Factory|Application|RedirectResponse
     {
-        return view('auth.index');
+        return view('auth.login');
     }
 
     public function handle(SignInFormRequest $request): RedirectResponse
