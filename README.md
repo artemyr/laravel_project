@@ -58,6 +58,10 @@ RouteServiceProvider
 
 ViewServiceProvider
 - доп команда Vite::image() для фасада через macro
+
+bootstrap/app
+- кастомная обработка исключений
+
 ---
 личный кабинет
 - авторизация
@@ -68,7 +72,9 @@ ViewServiceProvider
 фронт
 - vite
 - tailwindcss
+- alpinejs
 ---
 прочее
 - стилизованные flash уведомления для пользователей
+- логгер Telegram
 ---

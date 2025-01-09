@@ -15,10 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
 
-        /** TODO разобраться с отображением ошибки */
+        $exceptions->render(function (DomainException $e) {
+            return response()->view('index');
+        });
         $exceptions->report(function (DomainException $e) {
             flash()->alert($e->getMessage());
-            return back();
-        });
+        })->stop();
 
     })->create();
