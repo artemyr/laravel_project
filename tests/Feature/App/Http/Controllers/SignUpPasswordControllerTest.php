@@ -8,13 +8,14 @@ use App\Listeners\SendEmailNewUserListener;
 use App\Notifications\NewUserNotification;
 use Domain\Auth\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class SignUpPasswordControllerTest extends TestCase
 {
-    //    use RefreshDatabase;
+    use RefreshDatabase;
 
     public function test_it_sign_up_page_success(): void
     {
@@ -30,19 +31,19 @@ class SignUpPasswordControllerTest extends TestCase
         Notification::fake();
 
         $exists = User::query()
-            ->where('email', User::TEST_USER_EMAIL)
+            ->where('email', User::getTestUserEmail())
             ->exists();
 
         if ($exists) {
             User::query()
-                ->where('email', User::TEST_USER_EMAIL)
+                ->where('email', User::getTestUserEmail())
                 ->delete();
         }
 
         $request = SignUpFormRequest::factory()->create([
-            'email' => User::TEST_USER_EMAIL,
-            'password' => User::TEST_USER_PASSWORD,
-            'password_confirmation' => User::TEST_USER_PASSWORD
+            'email' => User::getTestUserEmail(),
+            'password' => User::getTestUserPassword(),
+            'password_confirmation' => User::getTestUserPassword()
         ]);
 
         $this->assertDatabaseMissing('users', [

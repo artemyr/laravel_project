@@ -4,28 +4,31 @@ namespace Domain\Auth\Traits;
 
 trait TestUser
 {
+    public static function getTestUserEmail(): string
+    {
+        return 'test@mail.ru';
+    }
+
+    public static function getTestUserPassword()
+    {
+        return '123456789';
+    }
+
     public static function getTestUser(): static
     {
         $exists = static::query()
-            ->where('email', self::TEST_USER_EMAIL)
+            ->where('email', static::getTestUserEmail())
             ->exists();
 
         if ($exists) {
             return static::query()
-                ->where('email', self::TEST_USER_EMAIL)
+                ->where('email', static::getTestUserEmail())
                 ->first();
         } else {
             return static::factory()->create([
-                'email' => static::TEST_USER_EMAIL,
-                'password' => bcrypt(self::TEST_USER_PASSWORD)
+                'email' => static::getTestUserEmail(),
+                'password' => bcrypt(static::getTestUserPassword())
             ]);
         }
-    }
-
-    public static function resetTestUserCredentials()
-    {
-        $testUser = self::getTestUser();
-        $testUser->password  = bcrypt(self::TEST_USER_PASSWORD);
-        $testUser->save();
     }
 }

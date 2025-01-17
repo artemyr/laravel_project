@@ -45,7 +45,7 @@ services:
 #      - mailtrap
     restart: unless-stopped
     environment:
-#      APP_ENV: ${APP_ENV}
+      APP_ENV: ${APP_ENV}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}

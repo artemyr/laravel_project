@@ -5,13 +5,14 @@ namespace Tests\Feature\App\Http\Controllers;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Requests\ForgotPasswordFormRequest;
 use Domain\Auth\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class ForgotPasswordControllerTest extends TestCase
 {
-    //    use RefreshDatabase;
+    use RefreshDatabase;
 
     public function test_it_forgot_page_success(): void
     {

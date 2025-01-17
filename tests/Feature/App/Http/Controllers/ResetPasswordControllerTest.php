@@ -5,6 +5,7 @@ namespace Tests\Feature\App\Http\Controllers;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Requests\ResetPasswordFormRequest;
 use Domain\Auth\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Password;
@@ -12,7 +13,7 @@ use Tests\TestCase;
 
 class ResetPasswordControllerTest extends TestCase
 {
-    //    use RefreshDatabase;
+    use RefreshDatabase;
 
     public function test_it_reset_page_success(): void
     {

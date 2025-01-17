@@ -39,9 +39,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public const TEST_USER_EMAIL = 'test@mail.ru';
-    public const TEST_USER_PASSWORD = '123456789';
-
     /**
      * Get the attributes that should be cast.
      *
