@@ -29,10 +29,20 @@ class SignUpPasswordControllerTest extends TestCase
         Event::fake();
         Notification::fake();
 
+        $exists = User::query()
+            ->where('email', User::TEST_USER_EMAIL)
+            ->exists();
+
+        if ($exists) {
+            User::query()
+                ->where('email', User::TEST_USER_EMAIL)
+                ->delete();
+        }
+
         $request = SignUpFormRequest::factory()->create([
-            'email' => 'user_store_test@mail.ru',
-            'password' => '123456789',
-            'password_confirmation' => '123456789'
+            'email' => User::TEST_USER_EMAIL,
+            'password' => User::TEST_USER_PASSWORD,
+            'password_confirmation' => User::TEST_USER_PASSWORD
         ]);
 
         $this->assertDatabaseMissing('users', [

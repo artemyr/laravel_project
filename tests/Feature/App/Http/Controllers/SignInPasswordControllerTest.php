@@ -21,16 +21,12 @@ class SignInPasswordControllerTest extends TestCase
 
     public function test_it_sign_in_success(): void
     {
-        $password = '123456789';
-
-        $user = User::factory()->create([
-            'email' => 'user_login_test@mail.ru',
-            'password' => bcrypt($password),
-        ]);
+        User::resetTestUserCredentials();
+        $testUser = User::getTestUser();
 
         $request = SignInFormRequest::factory()->create([
-            'email' => $user->email,
-            'password' => $password,
+            'email' => $testUser->email,
+            'password' => User::TEST_USER_PASSWORD,
         ]);
 
         $response = $this->post(action([SignInController::class, 'handle']), $request);
@@ -38,16 +34,14 @@ class SignInPasswordControllerTest extends TestCase
         $response->assertValid()
             ->assertRedirect(route('home'));
 
-        $this->assertAuthenticatedAs($user);
+        $this->assertAuthenticatedAs($testUser);
     }
 
     public function test_it_logout_success(): void
     {
-        $user = User::factory()->create([
-            'email' => 'user_logout_test@mail.ru',
-        ]);
+        $testUser = User::getTestUser();
 
-        $this->actingAs($user)
+        $this->actingAs($testUser)
             ->delete(action([SignInController::class, 'logOut']));
 
         $this->assertGuest();

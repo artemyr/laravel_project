@@ -4,6 +4,7 @@ namespace Domain\Auth\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\Domain\Auth\Models\UserFactory;
+use Domain\Auth\Traits\TestUser;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +15,7 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory;
     use Notifiable;
+    use TestUser;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +38,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public const TEST_USER_EMAIL = 'test@mail.ru';
+    public const TEST_USER_PASSWORD = '123456789';
 
     /**
      * Get the attributes that should be cast.

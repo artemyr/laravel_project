@@ -27,17 +27,12 @@ class ResetPasswordControllerTest extends TestCase
         Event::fake();
         Notification::fake();
 
-        $user = User::factory()->create([
-            'email' => 'user_reset_password_test@mail.ru',
-        ]);
-        $user = User::query()
-            ->where('email', 'user_reset_password_test@mail.ru')
-            ->first();
+        $testUser = User::getTestUser();
 
-        $token = Password::createToken($user);
+        $token = Password::createToken($testUser);
 
         $request = ResetPasswordFormRequest::factory()->create([
-            'email' => 'user_reset_password_test@mail.ru',
+            'email' => $testUser->email,
             'token' => $token,
             'password' => '987654321',
             'password_confirmation' => '987654321',

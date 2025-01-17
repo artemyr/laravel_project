@@ -29,14 +29,10 @@ class ForgotPasswordControllerTest extends TestCase
         Event::fake();
         Notification::fake();
 
-        $password = '123456789';
-        $user = User::factory()->create([
-            'email' => 'user_forgot_password_test@mail.ru',
-            'password' => bcrypt($password),
-        ]);
+        $testUser = User::getTestUser();
 
         $request = ForgotPasswordFormRequest::factory()->create([
-            'email' => 'user_forgot_password_test@mail.ru',
+            'email' => $testUser->email
         ]);
 
         $response = $this->post(action([ForgotPasswordController::class, 'handle']), $request);
