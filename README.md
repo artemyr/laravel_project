@@ -17,6 +17,7 @@
 2. laravel/telescope - просмотр логов
 3. worksome/request-factories - генератор запросов
 4. laravel/socialite - соцсети
+5. intervention/image - ресайз картинок
 
 ---
 
@@ -78,3 +79,6 @@ bootstrap/app
 - стилизованные flash уведомления для пользователей
 - логгер Telegram
 ---
+
+# Концепции
+- DDD
