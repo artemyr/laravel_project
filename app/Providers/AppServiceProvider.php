@@ -11,6 +11,8 @@ use Illuminate\Foundation\Http\Kernel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Services\Telegram\TelegramBotApi;
+use Services\Telegram\TelegramBotApiContract;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
          * записать данные в защищенное поле модели
          */
         Model::preventSilentlyDiscardingAttributes(!app()->isProduction());
+
+        $this->app->bind(TelegramBotApiContract::class, TelegramBotApi::class);
 
         if (app()->isProduction()) {
 
