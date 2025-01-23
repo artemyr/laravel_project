@@ -22,11 +22,16 @@ class SignInPasswordControllerTest extends TestCase
 
     public function test_it_sign_in_success(): void
     {
-        $testUser = User::getTestUser();
+        $password = '12345679';
+
+        $testUser = User::factory()->create([
+            'email' => 'test@mail.ru',
+            'password' => bcrypt($password),
+        ]);
 
         $request = SignInFormRequest::factory()->create([
             'email' => $testUser->email,
-            'password' => User::getTestUserPassword(),
+            'password' => $password,
         ]);
 
         $response = $this->post(action([SignInController::class, 'handle']), $request);
@@ -37,13 +42,35 @@ class SignInPasswordControllerTest extends TestCase
         $this->assertAuthenticatedAs($testUser);
     }
 
+    public function test_it_handle_fail(): void
+    {
+        $request = SignInFormRequest::factory()->create([
+            'email' => 'test@mail.ru',
+            'password' => str()->random(10)
+        ]);
+
+        $this->post(action([SignInController::class, 'handle']), $request)
+            ->assertInvalid(['email']);
+
+        $this->assertGuest();
+    }
+
     public function test_it_logout_success(): void
     {
-        $testUser = User::getTestUser();
+        $testUser = User::factory()->create([
+            'email' => 'test@mail.ru',
+            'password' => '123456789',
+        ]);
 
         $this->actingAs($testUser)
             ->delete(action([SignInController::class, 'logOut']));
 
         $this->assertGuest();
+    }
+
+    public function test_it_logout_guest_middleware_fail(): void
+    {
+        $this->delete(action([SignInController::class, 'logOut']))
+            ->assertRedirect(route('home'));
     }
 }

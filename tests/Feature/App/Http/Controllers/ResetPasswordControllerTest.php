@@ -3,7 +3,9 @@
 namespace Tests\Feature\App\Http\Controllers;
 
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\SignInController;
 use App\Http\Requests\ResetPasswordFormRequest;
+use Database\Factories\Domain\Auth\Models\UserFactory;
 use Domain\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
@@ -15,39 +17,47 @@ class ResetPasswordControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    private string $token;
+    private User $user;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = UserFactory::new()->create();
+        $this->token = Password::createToken($this->user);
+    }
+
     public function test_it_reset_page_success(): void
     {
-        $this->get(action([ResetPasswordController::class, 'page']))
+        $this->get(action([ResetPasswordController::class, 'page'], ['token' => $this->token]))
             ->assertOk()
             ->assertSee('Восстановление пароля')
             ->assertViewIs('auth.reset-password');
     }
 
-    public function test_it_reset_password_success(): void
+    public function test_it_handle(): void
     {
-        Event::fake();
-        Notification::fake();
+        $password = '123456789';
+        $passwordConfirmation = '123456789';
 
-        $testUser = User::getTestUser();
+        Password::shouldReceive('reset')
+            ->once()
+            ->withSomeOfArgs([
+                'email' => $this->user->email,
+                'password' => $password,
+                'password_confirmation' => $passwordConfirmation,
+                'token' => $this->token,
+            ])
+            ->andReturn(Password::PASSWORD_RESET);
 
-        $token = Password::createToken($testUser);
+        $response = $this->post(action([ResetPasswordController::class, 'page'], [
+            'email' => $this->user->email,
+            'password' => $password,
+            'password_confirmation' => $passwordConfirmation,
+            'token' => $this->token
+        ]));
 
-        $request = ResetPasswordFormRequest::factory()->create([
-            'email' => $testUser->email,
-            'token' => $token,
-            'password' => '987654321',
-            'password_confirmation' => '987654321',
-        ]);
-
-        $response = $this->post(action([ResetPasswordController::class, 'handle']), $request);
-
-        $response->assertValid();
-
-        $response->assertRedirect(route('login'));
+        $response->assertRedirect(action([SignInController::class, 'page']));
     }
-    // endregion
-
-    /**
-     * TODO password githubCallback
-     */
 }
