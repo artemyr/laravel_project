@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ThumbnailController
 {
+    /**
+     * TODO tests
+     */
     public function __invoke(
         string $dir,
         string $method,
