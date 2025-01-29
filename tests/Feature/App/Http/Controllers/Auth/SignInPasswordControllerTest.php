@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers;
+namespace Tests\Feature\App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Auth\SignInController;
 use App\Http\Requests\SignInFormRequest;

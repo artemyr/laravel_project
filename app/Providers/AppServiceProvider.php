@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Listeners\SendEmailNewUserListener;
 use Carbon\CarbonInterval;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\Kernel;
 use Illuminate\Support\Facades\DB;

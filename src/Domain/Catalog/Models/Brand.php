@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Catalog\Models;
 
-use App\Traits\Models\HasSlug;
-use App\Traits\Models\HasThumbnail;
+use App\Models\Product;
 use Database\Factories\BrandFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Support\Traits\Models\HasSlug;
+use Support\Traits\Models\HasThumbnail;
 
 class Brand extends Model
 {
@@ -40,5 +41,10 @@ class Brand extends Model
     protected function thumbnailDir(): string
     {
         return 'brands';
+    }
+
+    protected static function newFactory()
+    {
+        return BrandFactory::new();
     }
 }

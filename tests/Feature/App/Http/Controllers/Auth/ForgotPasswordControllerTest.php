@@ -1,14 +1,11 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers;
+namespace Tests\Feature\App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Requests\ForgotPasswordFormRequest;
-use Database\Factories\Domain\Auth\Models\UserFactory;
 use Domain\Auth\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
@@ -34,7 +31,7 @@ class ForgotPasswordControllerTest extends TestCase
 
     public function test_it_handle_success():void
     {
-        $user = UserFactory::new()->create($this->testingCredentials());
+        $user = User::factory()->create($this->testingCredentials());
 
         $this->post(action([ForgotPasswordController::class, 'handle']), $this->testingCredentials())
             ->assertRedirect();

@@ -1,15 +1,11 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers;
+namespace Tests\Feature\App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SignInController;
-use App\Http\Requests\ResetPasswordFormRequest;
-use Database\Factories\Domain\Auth\Models\UserFactory;
 use Domain\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Password;
 use Tests\TestCase;
 
@@ -24,7 +20,7 @@ class ResetPasswordControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = UserFactory::new()->create();
+        $this->user = User::factory()->create();
         $this->token = Password::createToken($this->user);
     }
 

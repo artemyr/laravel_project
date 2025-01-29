@@ -1,12 +1,11 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers;
+namespace Tests\Feature\App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Auth\SignUpController;
 use App\Http\Requests\SignUpFormRequest;
 use App\Listeners\SendEmailNewUserListener;
 use App\Notifications\NewUserNotification;
-use Database\Factories\Domain\Auth\Models\UserFactory;
 use Domain\Auth\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -85,7 +84,7 @@ class SignUpPasswordControllerTest extends TestCase
 
     public function test_it_should_fail_validation_on_unique_email(): void
     {
-        UserFactory::new()->create([
+        User::factory()->create([
             'email' => $this->request['email']
         ]);
 

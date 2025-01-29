@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers;
+namespace Tests\Feature\App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Auth\SocialAuthController;
-use Database\Factories\Domain\Auth\Models\UserFactory;
+use Domain\Auth\Models\User;
 use DomainException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Laravel\Socialite\Contracts\User as SocialiteUser;
 use Laravel\Socialite\Facades\Socialite;
 use Mockery\MockInterface;
 use Tests\TestCase;
-use Laravel\Socialite\Contracts\User as SocialiteUser;
 
 class SocialAuthControllerTest extends TestCase
 {
@@ -49,6 +49,16 @@ class SocialAuthControllerTest extends TestCase
         );
     }
 
+    public function test_it_github_redirect_success(): void
+    {
+        $this->get(
+            action(
+                [SocialAuthController::class, 'redirect'],
+                ['driver' => 'github']
+            )
+        )->assertRedirectContains('github.com');
+    }
+
     public function test_it_github_callback_created_user_success(): void
     {
         $githubId = str()->random(10);
@@ -73,7 +83,7 @@ class SocialAuthControllerTest extends TestCase
     {
         $githubId = str()->random(10);
 
-        UserFactory::new()->create([
+        User::factory()->create([
             'github_id' => $githubId
         ]);
 
