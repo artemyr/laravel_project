@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laravel\Scout\Attributes\SearchUsingFullText;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
+use Laravel\Scout\Searchable;
 use Support\Casts\PriceCast;
 use Support\Traits\Models\HasSlug;
 use Support\Traits\Models\HasThumbnail;
@@ -20,6 +23,7 @@ class Product extends Model
     use HasFactory;
     use HasSlug;
     use HasThumbnail;
+    use Searchable;
 
     protected $fillable = [
         'title',
@@ -28,7 +32,8 @@ class Product extends Model
         'brand_id',
         'thumbnail',
         'on_home_page',
-        'sorting'
+        'sorting',
+        'text'
     ];
 
     protected $casts = [
@@ -78,6 +83,15 @@ class Product extends Model
     protected function thumbnailDir(): string
     {
         return 'products';
+    }
+
+    #[SearchUsingFullText(['title','text'])]
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+            'text' => $this->text
+        ];
     }
 
     protected static function newFactory()
