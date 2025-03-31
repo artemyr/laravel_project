@@ -23,7 +23,6 @@ class Product extends Model
     use HasFactory;
     use HasSlug;
     use HasThumbnail;
-    use Searchable;
 
     protected $fillable = [
         'title',
@@ -83,15 +82,6 @@ class Product extends Model
     protected function thumbnailDir(): string
     {
         return 'products';
-    }
-
-    #[SearchUsingFullText(['title','text'])]
-    public function toSearchableArray()
-    {
-        return [
-            'title' => $this->title,
-            'text' => $this->text
-        ];
     }
 
     protected static function newFactory()

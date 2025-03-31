@@ -9,11 +9,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->fullText('title');
-
             $table->text('text')
-                ->nullable()
-                ->fulltext();
+                ->nullable();
+
+            $table->fullText(['title','text']);
         });
     }
 
