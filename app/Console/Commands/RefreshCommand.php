@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class RefreshCommand extends Command
@@ -19,6 +20,8 @@ class RefreshCommand extends Command
             $this->error('Can\'t refresh production app');
             return self::FAILURE;
         }
+
+        Cache::clear();
 
         Storage::deleteDirectory('images/products');
         Storage::deleteDirectory('images/brands');

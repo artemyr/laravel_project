@@ -20,7 +20,7 @@ class BrandFactory extends Factory
     {
         return [
             'title' => $this->faker->company(),
-            'thumbnail' => $this->faker->fixturesImage('brands','images/brands',false),
+            'thumbnail' => $this->faker->fixturesImage('brands','brands',false),
             'on_home_page' => $this->faker->boolean(),
             'sorting' => $this->faker->numberBetween(1,999),
         ];

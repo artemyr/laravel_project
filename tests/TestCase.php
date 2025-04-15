@@ -5,6 +5,7 @@ namespace Tests;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 use RuntimeException;
 
 abstract class TestCase extends BaseTestCase
@@ -19,6 +20,8 @@ abstract class TestCase extends BaseTestCase
         }
 
         Notification::fake();
+        Storage::fake('images');
+
         Http::preventingStrayRequests();
     }
 }
