@@ -33,6 +33,12 @@ class ThumbnailController
         }
 
         if (!$storage->exists($resultPath)) {
+
+            abort_if(
+                !$storage->exists($realPath),
+                404,
+            );
+
             $image = ImageManager::imagick()->read($storage->path($realPath));
 
             [$w, $h] = explode('x', $size);

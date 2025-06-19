@@ -6,20 +6,21 @@ use App\Contracts\RouteRegistrar;
 use App\Routing\AppRegistrar;
 use App\Routing\AuthRegistrar;
 use App\Routing\CatalogRegistrar;
-use http\Exception\RuntimeException;
+use App\Routing\ProductRegistrar;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
+use RuntimeException;
 
 class RouteServiceProvider extends ServiceProvider
 {
     public const HOME = '/';
 
     protected array $registrars = [
-        AppRegistrar::class, AuthRegistrar::class, CatalogRegistrar::class
+        AppRegistrar::class, AuthRegistrar::class, CatalogRegistrar::class, ProductRegistrar::class
     ];
 
     public function boot(Registrar $router): void
