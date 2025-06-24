@@ -19,13 +19,13 @@ class ProductController extends Controller
 
         session()->put('also.' . $product->id, $product->id);
 
-        $viewedProductsIds = session()->get('also');
-        unset($viewedProductsIds[$product->id]);
-
-        $viewedProducts = Product::query()
-            ->whereIn('id', $viewedProductsIds)
+        $also = Product::query()
+            ->where(function ($q) use ($product) {
+                $q->whereIn('id', session('also'))
+                    ->where('id','!=', $product->id);
+            })
             ->get();
 
-        return view('product.show', compact('product','options','viewedProducts'));
+        return view('product.show', compact('product','options','also'));
     }
 }
