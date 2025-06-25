@@ -19,7 +19,7 @@ class CatalogController extends Controller
             ->get();
 
         $products = Product::query()
-            ->select(['id', 'title', 'slug', 'thumbnail', 'price'])
+            ->select(['id', 'title', 'slug', 'thumbnail', 'price', 'json_properties'])
             ->when(request('s'), function (Builder $query) {
                 $query->whereFullText(['title','text'], request('s'));
             })

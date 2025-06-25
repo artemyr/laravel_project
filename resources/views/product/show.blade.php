@@ -57,10 +57,10 @@
                             <div class="text-body text-md md:text-lg font-bold line-through">59 300 ₽</div>
                         </div>
                         <ul class="sm:max-w-[360px] space-y-2 mt-8">
-                            @foreach($product->properties as $property)
+                            @foreach($product->json_properties as $property => $value)
                                 <li class="flex justify-between text-body">
-                                    <strong class="text-white">{{ $property->title }}</strong>
-                                    {{ $property->pivot->value }}
+                                    <strong>{{ $property }}:</strong>
+                                    {{ $value }}
                                 </li>
                             @endforeach
                         </ul>
