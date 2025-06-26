@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http\Controllers;
 
 use App\Models\Product;
+use Domain\Catalog\Models\Brand;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +20,8 @@ class ThumbnailControllerTest extends TestCase
         $storage = Storage::disk('images');
 
         config()->set('thumbnail', ['allowed_sizes' => [$size]]);
+
+        Brand::factory(3)->create();
 
         $product = Product::factory()->create();
 

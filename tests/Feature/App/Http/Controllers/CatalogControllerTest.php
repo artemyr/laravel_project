@@ -14,8 +14,9 @@ class CatalogControllerTest extends TestCase
 
     public function test_it_success_price_filtered_response(): void
     {
-        $products = Product::factory()
-            ->count(10)
+        Brand::factory(3)->create();
+
+        $products = Product::factory(10)
             ->create([
             'price' => 200
         ]);
@@ -31,7 +32,7 @@ class CatalogControllerTest extends TestCase
             ]
         ];
 
-        $this->get(action([CatalogController::class, $request]))
+        $this->get(action(CatalogController::class, $request))
             ->assertOk()
             ->assertSee($expectedProduct->title)
             ->assertDontSee($products->random()->first()->title);
@@ -39,8 +40,9 @@ class CatalogControllerTest extends TestCase
 
     public function test_it_success_brand_filtered_response(): void
     {
-        $products = Product::factory()
-            ->count(10)
+        Brand::factory()->create();
+
+        $products = Product::factory(10)
             ->create();
 
         $brand = Brand::factory()->create();
@@ -56,7 +58,7 @@ class CatalogControllerTest extends TestCase
             ]
         ];
 
-        $this->get(action([CatalogController::class, $request]))
+        $this->get(action(CatalogController::class, $request))
             ->assertOk()
             ->assertSee($expectedProduct->title)
             ->assertDontSee($products->random()->first()->title);
@@ -64,15 +66,16 @@ class CatalogControllerTest extends TestCase
 
     public function test_it_success_sorted_response(): void
     {
-        $products = Product::factory()
-            ->count(3)
+        Brand::factory(3)->create();
+
+        $products = Product::factory(3)
             ->create();
 
         $request = [
             'sort' => 'title'
         ];
 
-        $this->get(action([CatalogController::class, $request]))
+        $this->get(action(CatalogController::class, $request))
             ->assertOk()
             ->assertSeeInOrder(
                 $products->sortBy('title')

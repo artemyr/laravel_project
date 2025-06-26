@@ -5,6 +5,7 @@ namespace Tests\Feature\App\Jobs;
 use App\Jobs\ProductJsonProperties;
 use App\Models\Product;
 use App\Models\Property;
+use Domain\Catalog\Models\Brand;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
@@ -16,7 +17,9 @@ class ProductJsonPropertiesTest extends TestCase
 
         Queue::fake([ProductJsonProperties::class]);
 
-        $properties = Property::factory()->count(10)->create();
+        $properties = Property::factory(10)->create();
+
+        Brand::factory(3)->create();
 
         $product = Product::factory()
             ->hasAttached($properties, function () {
