@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Option;
-use App\Models\OptionValue;
-use App\Models\Product;
-use App\Models\Property;
 use Domain\Auth\Models\User;
 use Domain\Catalog\Models\Brand;
 use Domain\Catalog\Models\Category;
+use Domain\Product\Models\Option;
+use Domain\Product\Models\OptionValue;
+use Domain\Product\Models\Product;
+use Domain\Product\Models\Property;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;

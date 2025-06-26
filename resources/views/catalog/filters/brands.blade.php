@@ -11,7 +11,7 @@
                 type="checkbox"
                 id="{{ $filter->id($id) }}"
             >
-            <label for="{{ $filter->name($id) }}" class="form-checkbox-label">
+            <label for="{{ $filter->id($id) }}" class="form-checkbox-label">
                 {{ $label }}
             </label>
         </div>

@@ -3,9 +3,9 @@
 namespace Tests\Feature\App\Jobs;
 
 use App\Jobs\ProductJsonProperties;
-use App\Models\Product;
-use App\Models\Property;
 use Domain\Catalog\Models\Brand;
+use Domain\Product\Models\Product;
+use Domain\Product\Models\Property;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 

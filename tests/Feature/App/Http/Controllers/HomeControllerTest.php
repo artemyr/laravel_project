@@ -3,9 +3,9 @@
 namespace Tests\Feature\App\Http\Controllers;
 
 use App\Http\Controllers\HomeController;
-use App\Models\Product;
 use Domain\Catalog\Models\Brand;
 use Domain\Catalog\Models\Category;
+use Domain\Product\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

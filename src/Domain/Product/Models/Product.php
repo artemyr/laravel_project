@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Product\Models;
 
 use App\Jobs\ProductJsonProperties;
 use Database\Factories\ProductFactory;
-use Domain\Catalog\Facades\Sorter;
 use Domain\Catalog\Models\Brand;
 use Domain\Catalog\Models\Category;
-use Illuminate\Database\Eloquent\Builder;
+use Domain\Product\QueryBuilders\ProductQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Pipeline\Pipeline;
-use Laravel\Scout\Attributes\SearchUsingFullText;
-use Laravel\Scout\Attributes\SearchUsingPrefix;
-use Laravel\Scout\Searchable;
 use Support\Casts\PriceCast;
 use Support\Traits\Models\HasSlug;
 use Support\Traits\Models\HasThumbnail;
+
+/**
+ * @method static Product|ProductQueryBuilder query()
+ */
 
 class Product extends Model
 {
@@ -54,24 +53,9 @@ class Product extends Model
         });
     }
 
-    public function scopeHomePage(Builder $query)
+    public function newEloquentBuilder($query)
     {
-        $query->where('on_home_page', true)
-            ->orderBy('sorting')
-            ->limit(6);
-    }
-
-    public function scopeFiltered(Builder $query)
-    {
-        return app(Pipeline::class)
-            ->send($query)
-            ->through(filters())
-            ->thenReturn();
-    }
-
-    public function scopeSorted(Builder $query)
-    {
-        Sorter::run($query);
+        return new ProductQueryBuilder($query);
     }
 
     public function brand(): BelongsTo

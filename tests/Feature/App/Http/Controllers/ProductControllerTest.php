@@ -3,8 +3,8 @@
 namespace Tests\Feature\App\Http\Controllers;
 
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
 use Domain\Catalog\Models\Brand;
+use Domain\Product\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

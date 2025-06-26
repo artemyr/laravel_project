@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\App\Models;
 
-use App\Models\Product;
 use Domain\Catalog\Models\Brand;
+use Domain\Product\Models\Product;
 use Support\ValueObjects\Price;
 use Tests\TestCase;
 

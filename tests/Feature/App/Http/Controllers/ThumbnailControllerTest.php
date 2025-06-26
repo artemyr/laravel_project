@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\App\Http\Controllers;
 
-use App\Models\Product;
 use Domain\Catalog\Models\Brand;
+use Domain\Product\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
