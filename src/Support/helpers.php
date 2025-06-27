@@ -37,9 +37,9 @@ if (! function_exists('filter_url')) {
     function filter_url(?Category $category, array $params = []): string
     {
         return route('catalog', [
-            ...request()->only(['filters','sort']),
+            ...request()->only(['filters', 'sort']),
             ...$params,
-            'category' => $category
+            'category' => $category,
         ]);
     }
 }

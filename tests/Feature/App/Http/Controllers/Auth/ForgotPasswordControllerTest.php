@@ -13,10 +13,10 @@ class ForgotPasswordControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private function testingCredentials()
+    private function testing_credentials()
     {
         return [
-            'email' => 'test@mail.ru'
+            'email' => 'test@mail.ru',
         ];
     }
 
@@ -28,12 +28,11 @@ class ForgotPasswordControllerTest extends TestCase
             ->assertViewIs('auth.forgot-password');
     }
 
-
-    public function test_it_handle_success():void
+    public function test_it_handle_success(): void
     {
-        $user = User::factory()->create($this->testingCredentials());
+        $user = User::factory()->create($this->testing_credentials());
 
-        $this->post(action([ForgotPasswordController::class, 'handle']), $this->testingCredentials())
+        $this->post(action([ForgotPasswordController::class, 'handle']), $this->testing_credentials())
             ->assertRedirect();
 
         Notification::assertSentTo($user, ResetPassword::class);
@@ -41,9 +40,9 @@ class ForgotPasswordControllerTest extends TestCase
 
     public function test_it_handle_fail(): void
     {
-        $this->assertDatabaseMissing('users', $this->testingCredentials());
+        $this->assertDatabaseMissing('users', $this->testing_credentials());
 
-        $this->post(action([ForgotPasswordController::class, 'handle']), $this->testingCredentials())
+        $this->post(action([ForgotPasswordController::class, 'handle']), $this->testing_credentials())
             ->assertInvalid(['email']);
 
         Notification::assertNothingSent();

@@ -11,7 +11,7 @@ class FakerImageProvider extends Base
     {
         $storage = Storage::disk('images');
 
-        if ( ! $storage->exists($storageDir)) {
+        if (! $storage->exists($storageDir)) {
             $storage->makeDirectory($storageDir);
         }
 
@@ -21,6 +21,6 @@ class FakerImageProvider extends Base
             false
         );
 
-        return '/storage/images/' . trim($storageDir, '/') . '/' . $file;
+        return '/storage/images/'.trim($storageDir, '/').'/'.$file;
     }
 }

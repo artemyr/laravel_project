@@ -35,8 +35,8 @@ class NewUserNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('Добро пожаловать')
-                    ->action('На сайт', url('/'));
+            ->line('Добро пожаловать')
+            ->action('На сайт', url('/'));
     }
 
     /**

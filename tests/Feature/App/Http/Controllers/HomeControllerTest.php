@@ -18,40 +18,38 @@ class HomeControllerTest extends TestCase
         Brand::factory()->count(5)
             ->create([
                 'on_home_page' => true,
-                'sorting' => 999
+                'sorting' => 999,
             ]);
 
         $brand = Brand::factory()
             ->createOne([
                 'on_home_page' => true,
-                'sorting' => 1
+                'sorting' => 1,
             ]);
 
         Product::factory()
             ->create([
                 'on_home_page' => true,
-                'sorting' => 999
+                'sorting' => 999,
             ]);
 
         $product = Product::factory()
             ->createOne([
                 'on_home_page' => true,
-                'sorting' => 1
+                'sorting' => 1,
             ]);
-
 
         Category::factory()->count(5)
             ->create([
                 'on_home_page' => true,
-                'sorting' => 999
+                'sorting' => 999,
             ]);
 
         $category = Category::factory()
             ->createOne([
                 'on_home_page' => true,
-                'sorting' => 1
+                'sorting' => 1,
             ]);
-
 
         $this->get(action(HomeController::class))
             ->assertOk()

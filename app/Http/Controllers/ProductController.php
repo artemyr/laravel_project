@@ -13,12 +13,12 @@ class ProductController extends Controller
     {
         $product->load(['optionValues.option']);
 
-        session()->put('also.' . $product->id, $product->id);
+        session()->put('also.'.$product->id, $product->id);
 
         $also = Product::query()
             ->where(function ($q) use ($product) {
                 $q->whereIn('id', session('also'))
-                    ->where('id','!=', $product->id);
+                    ->where('id', '!=', $product->id);
             })
             ->get();
 

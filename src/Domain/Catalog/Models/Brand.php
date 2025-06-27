@@ -18,18 +18,20 @@ use Support\Traits\Models\HasThumbnail;
  */
 class Brand extends Model
 {
+    use Cacheable;
+
     /** @use HasFactory<BrandFactory> */
     use HasFactory;
+
     use HasSlug;
     use HasThumbnail;
-    use Cacheable;
 
     protected $fillable = [
         'title',
         'slug',
         'thumbnail',
         'on_home_page',
-        'sorting'
+        'sorting',
     ];
 
     public function newEloquentBuilder($query): BrandQueryBuilder

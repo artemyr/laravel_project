@@ -11,9 +11,7 @@ class MenuItem
     public function __construct(
         protected string $link,
         protected string $label,
-    )
-    {
-    }
+    ) {}
 
     public function link(): string
     {
@@ -33,6 +31,6 @@ class MenuItem
             return request()->path() === $path;
         }
 
-        return request()->fullUrlIs($this->link() . '*');
+        return request()->fullUrlIs($this->link().'*');
     }
 }

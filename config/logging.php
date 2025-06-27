@@ -132,8 +132,8 @@ return [
             'via' => \Support\Logging\Telegram\TelegramLoggerFactory::class,
             'level' => env('LOG_LEVEL', 'debug'),
             'chat_id' => env('TELEGRAM_CHAT_ID'),
-            'token' => env('TELEGRAM_BOT_TOKEN')
-        ]
+            'token' => env('TELEGRAM_BOT_TOKEN'),
+        ],
     ],
 
 ];

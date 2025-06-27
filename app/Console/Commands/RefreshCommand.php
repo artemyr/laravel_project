@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\ProductJsonProperties;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -10,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class RefreshCommand extends Command
 {
     protected $signature = 'app:refresh';
+
     protected $description = 'Refresh';
 
     /**
@@ -19,6 +19,7 @@ class RefreshCommand extends Command
     {
         if (app()->isProduction()) {
             $this->error('Can\'t refresh production app');
+
             return self::FAILURE;
         }
 

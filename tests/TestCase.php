@@ -6,7 +6,6 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
-use RuntimeException;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -16,7 +15,7 @@ abstract class TestCase extends BaseTestCase
 
         if (app()->environment() !== 'testing') {
             echo "Tests can be run only in testing environment\n";
-            die;
+            exit;
         }
 
         Notification::fake();

@@ -27,7 +27,7 @@ class SignUpPasswordControllerTest extends TestCase
         $this->request = SignUpFormRequest::factory()->create([
             'email' => 'test@mail.ru',
             'password' => '123456789',
-            'password_confirmation' => '123456789'
+            'password_confirmation' => '123456789',
         ]);
     }
 
@@ -71,13 +71,13 @@ class SignUpPasswordControllerTest extends TestCase
 
     public function test_it_user_created_success(): void
     {
-        $this->assertDatabaseMissing('users',[
+        $this->assertDatabaseMissing('users', [
             'email' => $this->request['email'],
         ]);
 
         $this->request();
 
-        $this->assertDatabaseHas('users',[
+        $this->assertDatabaseHas('users', [
             'email' => $this->request['email'],
         ]);
     }
@@ -85,10 +85,10 @@ class SignUpPasswordControllerTest extends TestCase
     public function test_it_should_fail_validation_on_unique_email(): void
     {
         User::factory()->create([
-            'email' => $this->request['email']
+            'email' => $this->request['email'],
         ]);
 
-        $this->assertDatabaseHas('users',[
+        $this->assertDatabaseHas('users', [
             'email' => $this->request['email'],
         ]);
 

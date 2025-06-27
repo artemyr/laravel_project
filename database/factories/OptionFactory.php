@@ -17,7 +17,7 @@ class OptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => ucfirst($this->faker->word())
+            'title' => ucfirst($this->faker->word()),
         ];
     }
 }

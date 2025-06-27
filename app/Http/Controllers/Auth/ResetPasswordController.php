@@ -17,7 +17,7 @@ class ResetPasswordController extends Controller
     public function page(Request $request): Application|Factory|View
     {
         return view('auth.reset-password', [
-            'token' => $request->get('token')
+            'token' => $request->get('token'),
         ]);
     }
 
@@ -38,6 +38,7 @@ class ResetPasswordController extends Controller
 
         if ($status === Password::PASSWORD_RESET) {
             flash()->info(__($status));
+
             return redirect()->route('login');
         }
 

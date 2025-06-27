@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -14,10 +13,9 @@ class ThumbnailController
         string $method,
         string $size,
         string $file
-    ): BinaryFileResponse
-    {
+    ): BinaryFileResponse {
         abort_if(
-            !in_array($size, config('thumbnail.allowed_sizes', [])),
+            ! in_array($size, config('thumbnail.allowed_sizes', [])),
             403,
             'Size not allowed'
         );
@@ -28,14 +26,14 @@ class ThumbnailController
         $newDirPath = "$dir/$method/$size";
         $resultPath = "$newDirPath/$file";
 
-        if (!$storage->exists($newDirPath)) {
+        if (! $storage->exists($newDirPath)) {
             $storage->makeDirectory($newDirPath);
         }
 
-        if (!$storage->exists($resultPath)) {
+        if (! $storage->exists($resultPath)) {
 
             abort_if(
-                !$storage->exists($realPath),
+                ! $storage->exists($realPath),
                 404,
             );
 

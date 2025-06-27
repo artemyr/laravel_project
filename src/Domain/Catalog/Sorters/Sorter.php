@@ -11,9 +11,7 @@ class Sorter
 
     public function __construct(
         protected array $columns = []
-    )
-    {
-    }
+    ) {}
 
     public function run(Builder $query): Builder
     {
@@ -47,7 +45,7 @@ class Sorter
         $column = trim($column, '-');
 
         if (strtoupper($direction) === 'DESC') {
-            $column = '-' . $column;
+            $column = '-'.$column;
         }
 
         return request($this->key()) === $column;

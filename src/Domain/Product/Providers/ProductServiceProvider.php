@@ -2,7 +2,6 @@
 
 namespace Domain\Product\Providers;
 
-
 use Illuminate\Support\ServiceProvider;
 
 class ProductServiceProvider extends ServiceProvider
@@ -14,8 +13,5 @@ class ProductServiceProvider extends ServiceProvider
         );
     }
 
-    public function boot(): void
-    {
-
-    }
+    public function boot(): void {}
 }

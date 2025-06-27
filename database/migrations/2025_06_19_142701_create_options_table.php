@@ -17,7 +17,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        if (!app()->isProduction()) {
+        if (! app()->isProduction()) {
             Schema::dropIfExists('options');
         }
     }

@@ -8,6 +8,6 @@ class PropertyCollection extends Collection
 {
     public function keyValues()
     {
-        return $this->mapWithKeys(fn($property) => [$property->title => $property->pivot->value]);
+        return $this->mapWithKeys(fn ($property) => [$property->title => $property->pivot->value]);
     }
 }

@@ -10,6 +10,7 @@ class TelegramLoggerFactory
     {
         $logger = new Logger('telegram');
         $logger->pushHandler(new TelegramLoggerHandler($config));
+
         return $logger;
     }
 }

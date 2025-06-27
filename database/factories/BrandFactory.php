@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class BrandFactory extends Factory
 {
     protected $model = Brand::class;
+
     /**
      * Define the model's default state.
      *
@@ -20,9 +21,9 @@ class BrandFactory extends Factory
     {
         return [
             'title' => $this->faker->company(),
-            'thumbnail' => $this->faker->fixturesImage('brands','brands',false),
+            'thumbnail' => $this->faker->fixturesImage('brands', 'brands', false),
             'on_home_page' => $this->faker->boolean(),
-            'sorting' => $this->faker->numberBetween(1,999),
+            'sorting' => $this->faker->numberBetween(1, 999),
         ];
     }
 }

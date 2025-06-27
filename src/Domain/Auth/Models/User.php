@@ -13,6 +13,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory;
+
     use Notifiable;
 
     /**
@@ -24,7 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'github_id'
+        'github_id',
     ];
 
     /**
@@ -53,7 +54,7 @@ class User extends Authenticatable
     public function avatar(): Attribute
     {
         return Attribute::make(
-            get: fn() => 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=' . $this->name
+            get: fn () => 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name='.$this->name
         );
     }
 

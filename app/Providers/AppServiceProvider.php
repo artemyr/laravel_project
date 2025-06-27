@@ -22,18 +22,18 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Model::shouldBeStrict(!app()->isProduction());
+        Model::shouldBeStrict(! app()->isProduction());
         /**
          * защита от проблемы ленивой загрузки отношений N+1
          * когда отношения модели подгружаются автоматически без явного указания
          * отножения нужно будет указывать явно, например так Post::with('author')->get()
          */
-        Model::preventLazyLoading(!app()->isProduction());
+        Model::preventLazyLoading(! app()->isProduction());
         /**
          * в локальной разработке выдавать ошибку, если пытаемся
          * записать данные в защищенное поле модели
          */
-        Model::preventSilentlyDiscardingAttributes(!app()->isProduction());
+        Model::preventSilentlyDiscardingAttributes(! app()->isProduction());
 
         $this->app->bind(TelegramBotApiContract::class, TelegramBotApi::class);
 
@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
                 if ($query->time > 100) {
                     logger()
                         ->channel('telegram')
-                        ->debug('query longer then 1ms:' . $query->toSql());
+                        ->debug('query longer then 1ms:'.$query->toSql());
                 }
             });
 
@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
                 function () {
                     logger()
                         ->channel('telegram')
-                        ->debug('whenRequestLifecycleIsLongerThan:' . request()->url());
+                        ->debug('whenRequestLifecycleIsLongerThan:'.request()->url());
                 }
             );
         }

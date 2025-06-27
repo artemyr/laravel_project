@@ -14,7 +14,7 @@ class OptionValue extends Model
 
     protected $fillable = [
         'title',
-        'option_id'
+        'option_id',
     ];
 
     public function option(): BelongsTo

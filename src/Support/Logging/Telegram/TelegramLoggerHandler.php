@@ -5,12 +5,12 @@ namespace Support\Logging\Telegram;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
 use Monolog\LogRecord;
-use Services\Telegram\TelegramBotApi;
 use Services\Telegram\TelegramBotApiContract;
 
 class TelegramLoggerHandler extends AbstractProcessingHandler
 {
     protected int $chatId;
+
     protected string $token;
 
     public function __construct(array $config)

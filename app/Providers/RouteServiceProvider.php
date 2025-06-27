@@ -20,7 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
 
     protected array $registrars = [
-        AppRegistrar::class, AuthRegistrar::class, CatalogRegistrar::class, ProductRegistrar::class
+        AppRegistrar::class, AuthRegistrar::class, CatalogRegistrar::class, ProductRegistrar::class,
     ];
 
     public function boot(Registrar $router): void

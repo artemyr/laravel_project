@@ -4,7 +4,4 @@ namespace Services\Telegram\Exceptions;
 
 use Exception;
 
-class TelegramBotApiException extends Exception
-{
-
-}
+class TelegramBotApiException extends Exception {}

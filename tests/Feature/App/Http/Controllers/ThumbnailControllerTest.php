@@ -30,7 +30,7 @@ class ThumbnailControllerTest extends TestCase
         $response->assertOk();
 
         $storage->assertExists(
-            "products/$method/$size/" . File::basename($product->thumbnail)
+            "products/$method/$size/".File::basename($product->thumbnail)
         );
     }
 }

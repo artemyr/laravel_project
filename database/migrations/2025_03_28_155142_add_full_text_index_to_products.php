@@ -12,13 +12,13 @@ return new class extends Migration
             $table->text('text')
                 ->nullable();
 
-            $table->fullText(['title','text']);
+            $table->fullText(['title', 'text']);
         });
     }
 
     public function down(): void
     {
-        if (!app()->isProduction()) {
+        if (! app()->isProduction()) {
             Schema::table('products', function (Blueprint $table) {
                 //
             });
