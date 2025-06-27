@@ -9,7 +9,12 @@ export default defineConfig({
                 'resources/sass/main.sass',
                 'resources/js/app.js'
             ],
-            refresh: true,
+            refresh: false,
         }),
     ],
+    server: {
+        watch: {
+            ignored: ['**/vendor/**'],
+        },
+    },
 });

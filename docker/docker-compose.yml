@@ -74,6 +74,7 @@ services:
     volumes:
       - ./logs/mysql:/var/log/mysql
       - db-data:/var/lib/mysql
+      - ./containers/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: unless-stopped
 
 #  mailtrap:
