@@ -31,7 +31,6 @@ class ThumbnailController
         }
 
         if (! $storage->exists($resultPath)) {
-
             abort_if(
                 ! $storage->exists($realPath),
                 404,

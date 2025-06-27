@@ -24,7 +24,7 @@ class Price implements Stringable
         }
 
         if (! isset($this->currencies[$currency])) {
-            throw new InvalidArgumentException('Unknown currency '.$currency);
+            throw new InvalidArgumentException('Unknown currency ' . $currency);
         }
     }
 
@@ -51,6 +51,6 @@ class Price implements Stringable
     public function __toString(): string
     {
         return number_format($this->value(), 0, ',', ' ')
-            .' '.$this->symbol();
+            . ' ' . $this->symbol();
     }
 }

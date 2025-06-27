@@ -126,9 +126,9 @@ bootstrap/app
 ---
 
 # CI
-при pull request или push в ветку master происходит запуск тестов на github файл .github/workflows/laravel.yml
+при pull request или push в ветку master происходит запуск тестов и проверка форматирования кода на github файл .github/workflows/laravel.yml
 
 ---
 
 # PSR-12
-для автоформатирования кода есть команда `composer format`
+для автоформатирования кода есть команда `composer lint:fix`
