@@ -18,11 +18,11 @@ use Support\Traits\Models\HasThumbnail;
 /**
  * @method static Product|ProductQueryBuilder query()
  */
-
 class Product extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
+
     use HasSlug;
     use HasThumbnail;
 
@@ -35,12 +35,12 @@ class Product extends Model
         'on_home_page',
         'sorting',
         'text',
-        'json_properties'
+        'json_properties',
     ];
 
     protected $casts = [
         'price' => PriceCast::class,
-        'json_properties' => 'array'
+        'json_properties' => 'array',
     ];
 
     protected static function boot()

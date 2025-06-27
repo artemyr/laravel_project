@@ -75,7 +75,7 @@ class SocialAuthControllerTest extends TestCase
         $this->assertAuthenticated();
 
         $this->assertDatabaseHas('users', [
-            'github_id' => $githubId
+            'github_id' => $githubId,
         ]);
     }
 
@@ -84,11 +84,11 @@ class SocialAuthControllerTest extends TestCase
         $githubId = str()->random(10);
 
         User::factory()->create([
-            'github_id' => $githubId
+            'github_id' => $githubId,
         ]);
 
         $this->assertDatabaseHas('users', [
-            'github_id' => $githubId
+            'github_id' => $githubId,
         ]);
 
         $this->mockSocialiteCallback($githubId);

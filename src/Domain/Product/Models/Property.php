@@ -13,7 +13,7 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title'
+        'title',
     ];
 
     protected static function newFactory()

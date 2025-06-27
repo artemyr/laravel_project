@@ -44,7 +44,7 @@ class ProductQueryBuilder extends Builder
     public function search(): ProductQueryBuilder
     {
         return $this->when(request('s'), function (Builder $query) {
-            $query->whereFullText(['title','text'], request('s'));
+            $query->whereFullText(['title', 'text'], request('s'));
         });
     }
 }

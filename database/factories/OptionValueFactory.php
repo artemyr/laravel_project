@@ -19,7 +19,7 @@ class OptionValueFactory extends Factory
     {
         return [
             'title' => ucfirst($this->faker->word()),
-            'option_id' => Option::query()->inRandomOrder()->value('id')
+            'option_id' => Option::query()->inRandomOrder()->value('id'),
         ];
     }
 }

@@ -17,16 +17,18 @@ use Support\Traits\Models\HasSlug;
  */
 class Category extends Model
 {
+    use Cacheable;
+
     /** @use HasFactory<CategoryFactory> */
     use HasFactory;
+
     use HasSlug;
-    use Cacheable;
 
     protected $fillable = [
         'title',
         'slug',
         'on_home_page',
-        'sorting'
+        'sorting',
     ];
 
     public function newEloquentBuilder($query): CategoryQueryBuilder

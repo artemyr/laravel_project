@@ -14,7 +14,7 @@ trait HasThumbnail
             'size' => $size,
             'dir' => $this->thumbnailDir(),
             'method' => $method,
-            'file' => File::basename($this->{$this->thumbnailColumn()})
+            'file' => File::basename($this->{$this->thumbnailColumn()}),
         ]);
     }
 

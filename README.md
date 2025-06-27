@@ -123,3 +123,12 @@ bootstrap/app
   - Collections - дополненные коллекции моделей
   - QueryBuilders - дополненые query builder модели
   - ViewModels - вынесение запросов данных для отображения из контроллеров в классы представлния
+---
+
+# CI
+при pull request или push в ветку master происходит запуск тестов на github файл .github/workflows/laravel.yml
+
+---
+
+# PSR-12
+для автоформатирования кода есть команда `composer format`

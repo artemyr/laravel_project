@@ -18,18 +18,18 @@ class CatalogControllerTest extends TestCase
 
         $products = Product::factory(10)
             ->create([
-            'price' => 200
-        ]);
+                'price' => 200,
+            ]);
 
         $expectedProduct = Product::factory()
             ->createOne([
-                'price' => 100000
+                'price' => 100000,
             ]);
 
         $request = [
             'filters' => [
-                'price' => ['from' => 999, 'to' => 1001]
-            ]
+                'price' => ['from' => 999, 'to' => 1001],
+            ],
         ];
 
         $this->get(action(CatalogController::class, $request))
@@ -49,13 +49,13 @@ class CatalogControllerTest extends TestCase
 
         $expectedProduct = Product::factory()
             ->createOne([
-                'brand_id' => $brand
+                'brand_id' => $brand,
             ]);
 
         $request = [
             'filters' => [
-                'brands' => [$brand->id => $brand->id]
-            ]
+                'brands' => [$brand->id => $brand->id],
+            ],
         ];
 
         $this->get(action(CatalogController::class, $request))
@@ -72,14 +72,14 @@ class CatalogControllerTest extends TestCase
             ->create();
 
         $request = [
-            'sort' => 'title'
+            'sort' => 'title',
         ];
 
         $this->get(action(CatalogController::class, $request))
             ->assertOk()
             ->assertSeeInOrder(
                 $products->sortBy('title')
-                    ->flatMap(fn($item) => [$item->title])
+                    ->flatMap(fn ($item) => [$item->title])
                     ->toArray()
             );
     }

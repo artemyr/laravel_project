@@ -49,8 +49,8 @@ class DatabaseSeeder extends Seeder
             )
             ->create();
 
-//        Product::factory(20)
-//            ->has(Category::factory(rand(1,3)))
-//            ->create();
+        //        Product::factory(20)
+        //            ->has(Category::factory(rand(1,3)))
+        //            ->create();
     }
 }

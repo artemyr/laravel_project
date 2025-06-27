@@ -62,7 +62,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
-        ]
+        ],
 
     ],
 

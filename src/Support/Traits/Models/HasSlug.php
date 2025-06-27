@@ -15,7 +15,7 @@ trait HasSlug
 
     protected function makeSlug(): void
     {
-        if ( ! $this->{$this->slugColumn()}) {
+        if (! $this->{$this->slugColumn()}) {
             $slug = $this->slugUnique(
                 str($this->{$this->slugFrom()})
                     ->slug()
@@ -44,7 +44,7 @@ trait HasSlug
         while ($this->isSlugExists($slug)) {
             $i++;
 
-            $slug = $originalSlug . '-' . $i;
+            $slug = $originalSlug.'-'.$i;
         }
 
         return $slug;

@@ -12,8 +12,7 @@ class CatalogViewModel extends ViewModel
 {
     public function __construct(
         public Category $category,
-    ) {
-    }
+    ) {}
 
     public function categories(): Collection
     {

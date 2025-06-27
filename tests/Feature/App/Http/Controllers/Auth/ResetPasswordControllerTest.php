@@ -14,6 +14,7 @@ class ResetPasswordControllerTest extends TestCase
     use RefreshDatabase;
 
     private string $token;
+
     private User $user;
 
     protected function setUp(): void
@@ -51,7 +52,7 @@ class ResetPasswordControllerTest extends TestCase
             'email' => $this->user->email,
             'password' => $password,
             'password_confirmation' => $passwordConfirmation,
-            'token' => $this->token
+            'token' => $this->token,
         ]));
 
         $response->assertRedirect(action([SignInController::class, 'page']));

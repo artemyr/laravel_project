@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
-class ProductJsonProperties implements ShouldQueue, ShouldBeUnique
+class ProductJsonProperties implements ShouldBeUnique, ShouldQueue
 {
     use Queueable;
 
@@ -16,8 +16,7 @@ class ProductJsonProperties implements ShouldQueue, ShouldBeUnique
      */
     public function __construct(
         public Product $product
-    )
-    {}
+    ) {}
 
     /**
      * Execute the job.
@@ -25,7 +24,7 @@ class ProductJsonProperties implements ShouldQueue, ShouldBeUnique
     public function handle(): void
     {
         $this->product->updateQuietly([
-            'json_properties' => $this->product->properties->keyValues()
+            'json_properties' => $this->product->properties->keyValues(),
         ]);
     }
 

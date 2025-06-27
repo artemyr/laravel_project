@@ -23,8 +23,6 @@ class SocialAuthController extends Controller
 
     /**
      * TODO таблицу привязок вынести в отдельную - 3 - 3 - 11:30
-     * @param string $driver
-     * @return RedirectResponse
      */
     public function callback(string $driver): RedirectResponse
     {
@@ -35,7 +33,7 @@ class SocialAuthController extends Controller
         $githubUser = Socialite::driver($driver)->user();
 
         $user = User::query()->updateOrCreate([
-            $driver . '_id' => $githubUser->getId(),
+            $driver.'_id' => $githubUser->getId(),
         ], [
             'name' => $githubUser->getName(),
             'email' => $githubUser->getEmail(),

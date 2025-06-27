@@ -46,7 +46,7 @@ class SignInPasswordControllerTest extends TestCase
     {
         $request = SignInFormRequest::factory()->create([
             'email' => 'test@mail.ru',
-            'password' => str()->random(10)
+            'password' => str()->random(10),
         ]);
 
         $this->post(action([SignInController::class, 'handle']), $request)
