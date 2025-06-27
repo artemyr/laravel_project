@@ -33,7 +33,7 @@ class SocialAuthController extends Controller
         $githubUser = Socialite::driver($driver)->user();
 
         $user = User::query()->updateOrCreate([
-            $driver.'_id' => $githubUser->getId(),
+            $driver . '_id' => $githubUser->getId(),
         ], [
             'name' => $githubUser->getName(),
             'email' => $githubUser->getEmail(),

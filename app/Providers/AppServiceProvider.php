@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
                 if ($query->time > 100) {
                     logger()
                         ->channel('telegram')
-                        ->debug('query longer then 1ms:'.$query->toSql());
+                        ->debug('query longer then 1ms:' . $query->toSql());
                 }
             });
 
@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
                 function () {
                     logger()
                         ->channel('telegram')
-                        ->debug('whenRequestLifecycleIsLongerThan:'.request()->url());
+                        ->debug('whenRequestLifecycleIsLongerThan:' . request()->url());
                 }
             );
         }

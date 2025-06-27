@@ -16,7 +16,8 @@ class ProductJsonProperties implements ShouldBeUnique, ShouldQueue
      */
     public function __construct(
         public Product $product
-    ) {}
+    ) {
+    }
 
     /**
      * Execute the job.

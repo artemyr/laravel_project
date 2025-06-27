@@ -18,8 +18,8 @@ class CatalogServiceProvider extends ServiceProvider
     public function boot(): void
     {
         app(FilterManager::class)->registerFilters([
-            new PriceFilter,
-            new BrandFilter,
+            new PriceFilter(),
+            new BrandFilter(),
         ]);
 
         $this->app->bind(Sorter::class, function () {

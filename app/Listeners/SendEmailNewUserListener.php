@@ -9,6 +9,6 @@ class SendEmailNewUserListener
 {
     public function handle(Registered $event): void
     {
-        $event->user->notify(new NewUserNotification);
+        $event->user->notify(new NewUserNotification());
     }
 }
