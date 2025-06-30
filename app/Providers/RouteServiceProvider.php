@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Contracts\RouteRegistrar;
 use App\Routing\AppRegistrar;
 use App\Routing\AuthRegistrar;
+use App\Routing\CartRegistrar;
 use App\Routing\CatalogRegistrar;
 use App\Routing\ProductRegistrar;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -21,6 +22,7 @@ class RouteServiceProvider extends ServiceProvider
 
     protected array $registrars = [
         AppRegistrar::class, AuthRegistrar::class, CatalogRegistrar::class, ProductRegistrar::class,
+        CartRegistrar::class
     ];
 
     public function boot(Registrar $router): void
