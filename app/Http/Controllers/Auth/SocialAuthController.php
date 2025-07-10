@@ -32,12 +32,17 @@ class SocialAuthController extends Controller
         }
 
         $githubUser = Socialite::driver($driver)->user();
+        $userEmail = $githubUser->getEmail();
+
+        if (User::query()->where('email', $userEmail)->exists()) {
+            return redirect(route('login'))->withErrors(['email' => 'Пользователь с такой почтой уже существует']);
+        }
 
         $user = User::query()->updateOrCreate([
             $driver . '_id' => $githubUser->getId(),
         ], [
             'name' => $githubUser->getName() ?? 'github_user_' . $githubUser->getId(),
-            'email' => $githubUser->getEmail(),
+            'email' => $userEmail,
             'password' => bcrypt(str()->random(20)),
         ]);
 
