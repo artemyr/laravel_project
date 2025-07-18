@@ -31,7 +31,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('order_items_option_value', function (Blueprint $table) {
+        Schema::create('order_items_option_value', function (Blueprint $table) {
             $table->id();
 
             $table->foreignIdFor(OrderItem::class)

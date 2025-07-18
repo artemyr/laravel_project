@@ -3,6 +3,8 @@
 namespace Domain\Order\Models;
 
 use Domain\Auth\Models\User;
+use Domain\Order\Enums\OrderStatuses;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,12 +20,24 @@ class Order extends Model
         'user_id',
         'delivery_type_id',
         'payment_method_id',
-        'amount'
+        'amount',
+        'status'
     ];
 
     protected $casts = [
         'amount' => PriceCast::class
     ];
+
+    protected $attributes = [
+        'status' => OrderStatuses::New->value
+    ];
+
+    public function status(): Attribute
+    {
+        return Attribute::make(
+            get: fn(string $value) => OrderStatuses::from($value)->createState($this)
+        );
+    }
 
     public function user(): BelongsTo
     {

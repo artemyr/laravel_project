@@ -20,9 +20,13 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
 
         $exceptions->render(function (DomainException $e) {
-            return response()->view('index');
+            return session()->previousUrl()
+                ? back()
+                : redirect()->route('home');
         });
+
         $exceptions->report(function (DomainException $e) {
             flash()->alert($e->getMessage());
         })->stop();
+
     })->create();

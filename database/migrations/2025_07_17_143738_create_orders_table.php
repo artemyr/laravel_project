@@ -1,6 +1,7 @@
 <?php
 
 use Domain\Auth\Models\User;
+use Domain\Order\Enums\OrderStatuses;
 use Domain\Order\Models\DeliveryType;
 use Domain\Order\Models\PaymentMethod;
 use Illuminate\Database\Migrations\Migration;
@@ -13,6 +14,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+
+            $table->enum('status', array_column(OrderStatuses::cases(),'value'))
+                ->default(OrderStatuses::New->value);
 
             $table->foreignIdFor(User::class)
                 ->nullable()
