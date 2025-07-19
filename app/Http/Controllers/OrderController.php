@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderFormRequest;
+use Domain\Order\Actions\NewOrderAction;
+use Domain\Order\DTOs\NewOrderDTO;
 use Domain\Order\Models\DeliveryType;
 use Domain\Order\Models\PaymentMethod;
+use Domain\Order\Processes\OrderProcess;
 use DomainException;
 
 class OrderController extends Controller
@@ -23,8 +27,17 @@ class OrderController extends Controller
         ]);
     }
 
-    public function handle()
+    public function handle(OrderFormRequest $request, NewOrderAction $action)
     {
-        return redirect()->route('home');
+        $order = $action(NewOrderDTO::fromRequest($request));
+
+        (new OrderProcess($order))
+            ->processes([
+
+            ])
+            ->run();
+
+        return redirect()
+            ->route('home');
     }
 }
