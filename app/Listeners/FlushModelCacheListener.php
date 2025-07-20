@@ -10,7 +10,7 @@ class FlushModelCacheListener
 {
     public function handle(object $event): void
     {
-        if (method_exists($event->model,'getCacheKeys')) {
+        if (method_exists($event->model, 'getCacheKeys')) {
             foreach ($event->model->getCacheKeys() as $cacheKey) {
                 Cache::forget($cacheKey);
             }

@@ -14,14 +14,15 @@ use Illuminate\Queue\SerializesModels;
 
 class OrderStatusChanged
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public function __construct(
         public Order $order,
         public OrderState $old,
         public OrderState $current
-    )
-    {
+    ) {
         //
     }
 }

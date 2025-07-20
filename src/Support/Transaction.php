@@ -14,8 +14,7 @@ class Transaction
         Closure $callback,
         Closure $finished = null,
         Closure $onError = null,
-    )
-    {
+    ) {
         try {
             DB::beginTransaction();
 

@@ -12,7 +12,7 @@ class DecreaseProductsQuantities implements OrderProcessContract
     {
         foreach (cart()->items() as $item) {
             $item->product()->update([
-                'quantity' => DB::raw('quantity - '.$item->quantity)
+                'quantity' => DB::raw('quantity - ' . $item->quantity)
             ]);
         }
 

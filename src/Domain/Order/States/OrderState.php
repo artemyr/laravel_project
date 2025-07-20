@@ -14,8 +14,7 @@ abstract class OrderState
 
     public function __construct(
         protected Order $order
-    )
-    {
+    ) {
     }
 
     abstract public function canBeChanged(): bool;

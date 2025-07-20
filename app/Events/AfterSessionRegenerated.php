@@ -12,7 +12,9 @@ use Illuminate\Queue\SerializesModels;
 
 class AfterSessionRegenerated
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * Create a new event instance.
@@ -20,7 +22,6 @@ class AfterSessionRegenerated
     public function __construct(
         public string $old,
         public string $current,
-    )
-    {
+    ) {
     }
 }

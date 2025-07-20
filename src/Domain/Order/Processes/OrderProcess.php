@@ -15,8 +15,7 @@ class OrderProcess
 
     public function __construct(
         protected Order $order
-    )
-    {
+    ) {
     }
 
     public function processes(array $processes): self

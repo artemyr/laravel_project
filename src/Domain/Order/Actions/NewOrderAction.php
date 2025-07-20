@@ -17,7 +17,7 @@ class NewOrderAction
             $registerAction(NewUserDTO::make(
                 $data->firstName . ' ' . $data->lastName,
                 $data->email,
-               $data->password
+                $data->password
             ));
         }
 
