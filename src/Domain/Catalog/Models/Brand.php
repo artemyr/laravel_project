@@ -59,7 +59,7 @@ class Brand extends Model
         return BrandFactory::new();
     }
 
-    protected function getCacheKeys(): array
+    public function getCacheKeys(): array
     {
         return ['brand_home_page'];
     }
