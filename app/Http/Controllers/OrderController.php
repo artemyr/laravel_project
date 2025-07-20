@@ -7,8 +7,14 @@ use Domain\Order\Actions\NewOrderAction;
 use Domain\Order\DTOs\NewOrderDTO;
 use Domain\Order\Models\DeliveryType;
 use Domain\Order\Models\PaymentMethod;
+use Domain\Order\Processes\AssignCustomer;
+use Domain\Order\Processes\AssignProducts;
+use Domain\Order\Processes\ChangeStateToPending;
+use Domain\Order\Processes\CheckProductQuantities;
+use Domain\Order\Processes\ClearCart;
+use Domain\Order\Processes\DecreaseProductsQuantities;
 use Domain\Order\Processes\OrderProcess;
-use DomainException;
+use Throwable;
 
 class OrderController extends Controller
 {
@@ -17,7 +23,8 @@ class OrderController extends Controller
         $items = cart()->items();
 
         if ($items->isEmpty()) {
-            throw new DomainException('Корзина пуста');
+            flash()->alert('Корзина пуста');
+            return redirect()->route('home');
         }
 
         return view('order.index', [
@@ -27,13 +34,23 @@ class OrderController extends Controller
         ]);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function handle(OrderFormRequest $request, NewOrderAction $action)
     {
-        $order = $action(NewOrderDTO::fromRequest($request));
+        $newOrderDto = NewOrderDTO::fromRequest($request);
+
+        $order = $action($newOrderDto);
 
         (new OrderProcess($order))
             ->processes([
-
+                new CheckProductQuantities(),
+                new AssignCustomer($newOrderDto),
+                new AssignProducts(),
+                new ChangeStateToPending(),
+                new DecreaseProductsQuantities(),
+                new ClearCart(),
             ])
             ->run();
 

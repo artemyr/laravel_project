@@ -25,7 +25,7 @@ class CacheServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Event::listen(ModelCreatedEvent::class, FlushModelCacheListener::class);
-//        Event::listen(ModelUpdatedEvent::class, FlushModelCacheListener::class);
-//        Event::listen(ModelDeletedEvent::class, FlushModelCacheListener::class);
+        Event::listen(ModelUpdatedEvent::class, FlushModelCacheListener::class);
+        Event::listen(ModelDeletedEvent::class, FlushModelCacheListener::class);
     }
 }

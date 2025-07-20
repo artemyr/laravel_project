@@ -51,7 +51,7 @@ class Category extends Model
         return CategoryFactory::new();
     }
 
-    protected function getCacheKeys(): array
+    public function getCacheKeys(): array
     {
         return ['category_home_page'];
     }

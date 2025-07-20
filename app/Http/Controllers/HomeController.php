@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Domain\Catalog\Models\Brand;
 use Domain\Catalog\ViewModels\BrandViewModel;
 use Domain\Catalog\ViewModels\CategoryViewModel;
 use Domain\Product\Models\Product;
@@ -17,8 +16,6 @@ class HomeController extends Controller
         $products = Product::query()
             ->homePage()
             ->get();
-
-        Brand::create(['title' => 'testing']);
 
         return view('index', [
             'categories' => CategoryViewModel::make()

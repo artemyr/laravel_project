@@ -19,6 +19,5 @@ class OrderCreated
         public Order $order
     )
     {
-        //
     }
 }

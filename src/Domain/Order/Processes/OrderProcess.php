@@ -17,7 +17,6 @@ class OrderProcess
         protected Order $order
     )
     {
-
     }
 
     public function processes(array $processes): self
@@ -26,6 +25,9 @@ class OrderProcess
         return $this;
     }
 
+    /**
+     * @throws Throwable
+     */
     public function run()
     {
         return Transaction::run(function () {
@@ -34,7 +36,7 @@ class OrderProcess
                 ->through($this->processes)
                 ->thenReturn();
         }, function (Order $order) {
-            flash()->info('Заказ создан: №' . $order->id);
+            flash()->info("Заказ №{$order->id} создан");
             event(new OrderCreated($order));
         }, function (Throwable $e) {
 

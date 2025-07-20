@@ -191,18 +191,6 @@
                                     </div>
                                 @endforeach
 
-                                <div class="form-radio">
-                                    <input type="radio" name="delivery-method[]" id="delivery-method-pickup">
-                                    <label for="delivery-method-pickup" class="form-radio-label">Самовывоз</label>
-                                </div>
-                                <div class="space-y-3">
-                                    <div class="form-radio">
-                                        <input type="radio" name="delivery-method[]" id="delivery-method-address" checked>
-                                        <label for="delivery-method-address" class="form-radio-label">Адресная доставка</label>
-                                    </div>
-                                    <input type="text" class="w-full h-16 px-4 rounded-lg border border-body/10 focus:border-pink focus:shadow-[0_0_0_3px_#EC4176] bg-white/5 text-white text-xs shadow-transparent outline-0 transition" placeholder="Город" required>
-                                    <input type="text" class="w-full h-16 px-4 rounded-lg border border-body/10 focus:border-pink focus:shadow-[0_0_0_3px_#EC4176] bg-white/5 text-white text-xs shadow-transparent outline-0 transition" placeholder="Адрес" required>
-                                </div>
                             </div>
                         </div>
 
@@ -263,18 +251,19 @@
                         <div class="text-xs font-semibold text-right">Всего: {{ cart()->amount() }}</div>
 
                         <div class="mt-8 space-y-8">
+
                             <!-- Promocode -->
-                            <div class="space-y-4">
-                                <div class="flex gap-3">
-                                    <input type="text" class="grow w-full h-[56px] px-4 rounded-lg border border-body/10 focus:border-pink focus:shadow-[0_0_0_3px_#EC4176] bg-white/5 text-white text-xs shadow-transparent outline-0 transition" placeholder="Промокод" required>
-                                    <button type="submit" class="shrink-0 w-14 !h-[56px] !px-0 btn btn-purple">→</button>
-                                </div>
-                                <div class="space-y-3">
-                                    <div class="px-4 py-3 rounded-lg bg-[#137d3d] text-xs">Промокод <a href="#" class="mx-2 py-0.5 px-1.5 rounded-md border-dashed border-2 text-white hover:text-white/70 text-xs" title="Удалить промокод">&times; leeto15</a> успешно добавлен.</div>
-                                    <!-- <div class="px-4 py-3 rounded-lg bg-[#b91414] text-xs">Промокод <b>leeto15</b> удалён.</div> -->
-                                    <!-- <div class="px-4 py-3 rounded-lg bg-[#b91414] text-xs">Промокод <b>leeto15</b> не найден.</div> -->
-                                </div>
-                            </div>
+{{--                            <div class="space-y-4">--}}
+{{--                                <div class="flex gap-3">--}}
+{{--                                    <input type="text" class="grow w-full h-[56px] px-4 rounded-lg border border-body/10 focus:border-pink focus:shadow-[0_0_0_3px_#EC4176] bg-white/5 text-white text-xs shadow-transparent outline-0 transition" placeholder="Промокод" required>--}}
+{{--                                    <button type="submit" class="shrink-0 w-14 !h-[56px] !px-0 btn btn-purple">→</button>--}}
+{{--                                </div>--}}
+{{--                                <div class="space-y-3">--}}
+{{--                                    <div class="px-4 py-3 rounded-lg bg-[#137d3d] text-xs">Промокод <a href="#" class="mx-2 py-0.5 px-1.5 rounded-md border-dashed border-2 text-white hover:text-white/70 text-xs" title="Удалить промокод">&times; leeto15</a> успешно добавлен.</div>--}}
+{{--                                    <!-- <div class="px-4 py-3 rounded-lg bg-[#b91414] text-xs">Промокод <b>leeto15</b> удалён.</div> -->--}}
+{{--                                    <!-- <div class="px-4 py-3 rounded-lg bg-[#b91414] text-xs">Промокод <b>leeto15</b> не найден.</div> -->--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             <!-- Summary -->
                             <table class="w-full text-left">
@@ -283,10 +272,10 @@
                                     <th scope="row" class="pb-2 text-xs font-medium">Доставка:</th>
                                     <td class="pb-2 text-xs">600 ₽</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row" class="pb-2 text-xs font-medium">Промокод:</th>
-                                    <td class="pb-2 text-xs">15 398 ₽</td>
-                                </tr>
+{{--                                <tr>--}}
+{{--                                    <th scope="row" class="pb-2 text-xs font-medium">Промокод:</th>--}}
+{{--                                    <td class="pb-2 text-xs">15 398 ₽</td>--}}
+{{--                                </tr>--}}
                                 <tr>
                                     <th scope="row" class="text-md 2xl:text-lg font-black">Итого:</th>
                                     <td class="text-md 2xl:text-lg font-black">{{ cart()->amount() }}</td>
