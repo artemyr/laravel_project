@@ -12,6 +12,7 @@
         "laravel/socialite": "^5.16",
         "laravel/telescope": "^5.2",
         "laravel/tinker": "^2.9",
+        "spatie/laravel-model-states": "^2.11",
         "spatie/laravel-view-models": "^1.6"
     },
     "require-dev": {

@@ -16,6 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             SeoMiddleware::class,
         ]);
+        $middleware->validateCsrfTokens(except: [
+            'stripe/*',
+            'payment/callback'
+        ]);
     })
     ->withSchedule(function (Schedule $schedule) {
         $schedule->call('model:prune')->monthly();
