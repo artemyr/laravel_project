@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2944a6f30393b2d64c06305e5277c24",
+    "content-hash": "982600abad5e1811744dbae49bae9f1b",
     "packages": [
         {
             "name": "amphp/amp",
@@ -4012,6 +4012,62 @@
             "time": "2020-10-15T08:29:30+00:00"
         },
         {
+            "name": "php-ds/php-ds",
+            "version": "v1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-ds/polyfill.git",
+                "reference": "017fb5cdfa52a1f13126c94987b04b884c44f9cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-ds/polyfill/zipball/017fb5cdfa52a1f13126c94987b04b884c44f9cd",
+                "reference": "017fb5cdfa52a1f13126c94987b04b884c44f9cd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.4"
+            },
+            "provide": {
+                "ext-ds": "1.5.0"
+            },
+            "require-dev": {
+                "php-ds/tests": "^1.5"
+            },
+            "suggest": {
+                "ext-ds": "to improve performance and reduce memory usage"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudi Theunissen",
+                    "email": "rudolf.theunissen@gmail.com"
+                }
+            ],
+            "description": "Specialized data structures as alternatives to the PHP array",
+            "keywords": [
+                "data structures",
+                "ds",
+                "php",
+                "polyfill"
+            ],
+            "support": {
+                "issues": "https://github.com/php-ds/polyfill/issues",
+                "source": "https://github.com/php-ds/polyfill/tree/v1.7.0"
+            },
+            "time": "2025-05-18T04:50:53+00:00"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.9.3",
             "source": {
@@ -7553,6 +7609,53 @@
             "time": "2024-12-21T16:25:41+00:00"
         },
         {
+            "name": "unitpay/php-sdk",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unitpay/php-sdk.git",
+                "reference": "77c7b9393e71b520ce26518fbd8b687ae07197c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unitpay/php-sdk/zipball/77c7b9393e71b520ce26518fbd8b687ae07197c0",
+                "reference": "77c7b9393e71b520ce26518fbd8b687ae07197c0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "./UnitPay.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Unitpay and contributors",
+                    "homepage": "https://github.com/unitpay/php-sdk/contributors"
+                }
+            ],
+            "description": "PHP SDK for Unitpay",
+            "homepage": "https://unitpay.ru",
+            "keywords": [
+                "Payment service",
+                "payment processing",
+                "unitpay"
+            ],
+            "support": {
+                "issues": "https://github.com/unitpay/php-sdk/issues",
+                "source": "https://github.com/unitpay/php-sdk/tree/2.0.6"
+            },
+            "time": "2025-05-14T13:42:24+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.6.1",
             "source": {
@@ -7767,6 +7870,104 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "yoomoney/yookassa-sdk-php",
+            "version": "3.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.yoomoney.ru/scm/sdk/yookassa-sdk-php.git",
+                "reference": "27c2aef05a6d30e508fdb99dab49cd5e205bb5ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.yoomoney.ru/rest/api/latest/projects/SDK/repos/yookassa-sdk-php/archive?at=refs%2Ftags%2F3.8.1&format=zip",
+                "reference": "27c2aef05a6d30e508fdb99dab49cd5e205bb5ee"
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=8.0",
+                "php-ds/php-ds": "^1.4",
+                "psr/log": "^2.0 || ^3.0",
+                "yoomoney/yookassa-sdk-validator": "^1.0"
+            },
+            "require-dev": {
+                "ext-xml": "*",
+                "friendsofphp/php-cs-fixer": "^3.15",
+                "mockery/mockery": "^1.5",
+                "php-parallel-lint/php-parallel-lint": "^1.3",
+                "phpmd/phpmd": "^2.13",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.6",
+                "yoomoney/yookassa-fakerphp": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "YooKassa\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "YooMoney",
+                    "email": "cms@yoomoney.ru"
+                }
+            ],
+            "description": "This is a developer tool for integration with YooMoney.",
+            "homepage": "https://yookassa.ru/developers/api",
+            "keywords": [
+                "api",
+                "payments",
+                "sdk",
+                "yookassa",
+                "yoomoney"
+            ],
+            "time": "2025-07-01T11:52:30+00:00"
+        },
+        {
+            "name": "yoomoney/yookassa-sdk-validator",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://git.yoomoney.ru/scm/sdk/yookassa-sdk-validator-php.git",
+                "reference": "1068864a5179dcbb93b244bff43c0e6bc531b62a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.yoomoney.ru/rest/api/latest/projects/SDK/repos/yookassa-sdk-validator-php/archive?at=refs%2Ftags%2F1.0.3&format=zip"
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=8.0.0"
+            },
+            "require-dev": {
+                "ext-xml": "*",
+                "phpunit/phpunit": "^9.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "YooKassa\\Validator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "YooMoney",
+                    "email": "cms@yoomoney.ru"
+                }
+            ],
+            "description": "This is a developer tool for validating with YooMoney.",
+            "time": "2024-12-16T16:29:49+00:00"
         }
     ],
     "packages-dev": [

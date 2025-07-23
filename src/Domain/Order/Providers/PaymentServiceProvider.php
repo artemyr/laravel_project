@@ -19,9 +19,9 @@ class PaymentServiceProvider extends ServiceProvider
     {
         PaymentSystem::provider(function () {
 
-//            if (true) {
-//                return new UnitPay(config('payment.providers.unitpay'));
-//            }
+            if (request()->boolean('pay_by_unitpay')) {
+                return new UnitPay(config('payment.providers.unitpay'));
+            }
 
             return new YooKassa(config('payment.providers.yookasa'));
         });
