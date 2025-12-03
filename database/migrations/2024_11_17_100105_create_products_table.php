@@ -24,6 +24,10 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+
+            $table->unsignedInteger('quantity')
+                ->default(0);
+
             $table->timestamps();
         });
 

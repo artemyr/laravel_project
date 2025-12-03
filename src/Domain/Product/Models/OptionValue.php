@@ -2,6 +2,7 @@
 
 namespace Domain\Product\Models;
 
+use Database\Factories\OptionValueFactory;
 use Domain\Product\Collections\OptionValueCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,5 +26,10 @@ class OptionValue extends Model
     public function newCollection(array $models = []): OptionValueCollection
     {
         return new OptionValueCollection($models);
+    }
+
+    protected static function newFactory(): OptionValueFactory
+    {
+        return new OptionValueFactory();
     }
 }

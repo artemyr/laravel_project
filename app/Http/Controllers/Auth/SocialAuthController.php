@@ -7,6 +7,7 @@ use Domain\Auth\Models\User;
 use DomainException;
 use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Facades\Socialite;
+use Support\SessionRegenerator;
 use Throwable;
 
 class SocialAuthController extends Controller
@@ -31,16 +32,21 @@ class SocialAuthController extends Controller
         }
 
         $githubUser = Socialite::driver($driver)->user();
+        $userEmail = $githubUser->getEmail();
+
+        if (User::query()->where('email', $userEmail)->exists()) {
+            return redirect(route('login'))->withErrors(['email' => 'Пользователь с такой почтой уже существует']);
+        }
 
         $user = User::query()->updateOrCreate([
             $driver . '_id' => $githubUser->getId(),
         ], [
-            'name' => $githubUser->getName(),
-            'email' => $githubUser->getEmail(),
+            'name' => $githubUser->getName() ?? 'github_user_' . $githubUser->getId(),
+            'email' => $userEmail,
             'password' => bcrypt(str()->random(20)),
         ]);
 
-        auth()->login($user);
+        SessionRegenerator::run(fn () => auth()->login($user));
 
         return redirect()
             ->intended(route('home'));
