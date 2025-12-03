@@ -3,7 +3,7 @@
 return [
     'providers' => [
         'yookasa' => [
-            'login' => '',
+            'login' => 0,
             'password' => '',
         ],
         'unitpay' => [
