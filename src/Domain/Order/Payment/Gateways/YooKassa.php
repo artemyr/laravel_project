@@ -182,6 +182,6 @@ class YooKassa implements PaymentGatewayContract
 
     private function idempotenceKey(): string
     {
-        return uniqid('',true);
+        return uniqid('', true);
     }
 }

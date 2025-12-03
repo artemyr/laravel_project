@@ -13,7 +13,6 @@ class PaymentData
         public readonly string $returnUrl,
         public readonly Price $amount,
         public readonly Collection $meta,
-    )
-    {
+    ) {
     }
 }

@@ -24,6 +24,6 @@ class SeoUrlCast implements CastsAttributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): mixed
     {
-        return parse_url($value,PHP_URL_PATH) ?? '/';
+        return parse_url($value, PHP_URL_PATH) ?? '/';
     }
 }

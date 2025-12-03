@@ -26,8 +26,7 @@ class UnitPayPaymentGateway
         string $returnUrl,
         string $returnUrl1,
         string $phone
-    ): string
-    {
+    ): string {
     }
 
     public function handle(float|int $value, string $currency)

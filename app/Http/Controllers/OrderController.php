@@ -44,7 +44,7 @@ class OrderController extends Controller
         $customer = OrderCustomerDTO::fromArray($request->get('customer'));
 
         $order = $action(
-            OrderDTO::make(...$request->only('payment_method_id','delivery_type_id','password')),
+            OrderDTO::make(...$request->only('payment_method_id', 'delivery_type_id', 'password')),
             $customer,
             $request->boolean('create_account')
         );

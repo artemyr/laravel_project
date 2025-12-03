@@ -76,16 +76,13 @@ class PaymentSystem
                 }
 
                 $payment->state->transitionTo(PayedPaymentState::class);
-
             } catch (PaymentProcessException $e) {
-
                 if (is_callable(self::$onError)) {
                     call_user_func(
                         self::$onError,
                         self::$provider->errorMessage() ?? $e->getMessage()
                     );
                 }
-
             }
         }
 

@@ -26,16 +26,14 @@ class PaymentServiceProvider extends ServiceProvider
             return new YooKassa(config('payment.providers.yookasa'));
         });
 
-        PaymentSystem::onCreating(function (PaymentData $paymentData){
+        PaymentSystem::onCreating(function (PaymentData $paymentData) {
             return $paymentData;
         });
 
-        PaymentSystem::onSuccess(function (Payment $payment){
-
+        PaymentSystem::onSuccess(function (Payment $payment) {
         });
 
-        PaymentSystem::onError(function (string $message, Payment $payment){
-
+        PaymentSystem::onError(function (string $message, Payment $payment) {
         });
     }
 }

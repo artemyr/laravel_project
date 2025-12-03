@@ -35,5 +35,4 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->report(function (DomainException $e) {
             flash()->alert($e->getMessage());
         })->stop();
-
     })->create();

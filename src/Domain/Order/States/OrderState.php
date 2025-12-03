@@ -30,7 +30,9 @@ abstract class OrderState
         }
 
         if (!in_array(get_class($state), $this->allowedTransitions)) {
-            throw new InvalidArgumentException("No transition for {$this->order->status->value()} to {$state->value()}");
+            throw new InvalidArgumentException(
+                "No transition for {$this->order->status->value()} to {$state->value()}"
+            );
         }
 
         $this->order->updateQuietly([
